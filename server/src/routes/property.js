@@ -1,0 +1,2 @@
+import {Router} from 'express'; import {create,list,getOne,update,remove,nearby} from '../controllers/property.js'; import {auth} from '../middleware/auth.js'; import {asyncHandler} from '../utils/asyncHandler.js';
+const r=Router();r.get('/',asyncHandler(list));r.get('/nearby',asyncHandler(nearby));r.get('/:id',asyncHandler(getOne));r.post('/',auth,asyncHandler(create));r.put('/:id',auth,asyncHandler(update));r.delete('/:id',auth,asyncHandler(remove));export default r;

@@ -1,0 +1,1 @@
+import {Router} from 'express';import {createOrder,verify,mine} from '../controllers/transaction.js';import {auth} from '../middleware/auth.js';import {asyncHandler} from '../utils/asyncHandler.js';const r=Router();r.use(auth);r.get('/mine',asyncHandler(mine));r.post('/order',asyncHandler(createOrder));r.post('/verify',asyncHandler(verify));export default r;

@@ -1,0 +1,22 @@
+openapi: 3.0.0
+info:
+  title: EstateHub API
+  version: 1.0.0
+paths:
+  /api/health:
+    get:
+      summary: API health check
+      responses:
+        '200': {description: Healthy}
+  /api/properties:
+    get:
+      summary: Search and paginate properties
+      parameters:
+        - {in: query, name: city, schema: {type: string}}
+        - {in: query, name: propertyType, schema: {type: string}}
+        - {in: query, name: minPrice, schema: {type: number}}
+        - {in: query, name: maxPrice, schema: {type: number}}
+        - {in: query, name: page, schema: {type: integer}}
+        - {in: query, name: limit, schema: {type: integer}}
+      responses:
+        '200': {description: Property results}

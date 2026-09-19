@@ -1,0 +1,4 @@
+import {z} from 'zod';
+export const registerSchema=z.object({name:z.string().min(2).max(80),email:z.string().email(),password:z.string().min(8),phone:z.string().regex(/^[6-9]\d{9}$/).optional(),role:z.enum(['buyer','agent']).optional()});
+export const loginSchema=z.object({email:z.string().email(),password:z.string().min(1)});
+export const propertySchema=z.object({title:z.string().min(3).max(150),description:z.string().min(10).max(5000),price:z.number().positive(),propertyType:z.enum(['apartment','house','villa','plot','office']),bedrooms:z.number().int().min(0).optional(),bathrooms:z.number().int().min(0).optional(),city:z.string().min(2),address:z.string().min(3),amenities:z.array(z.string()).optional(),latitude:z.number().gte(-90).lte(90).optional(),longitude:z.number().gte(-180).lte(180).optional()});

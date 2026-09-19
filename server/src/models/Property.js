@@ -1,0 +1,4 @@
+import mongoose from 'mongoose';
+const propertySchema=new mongoose.Schema({title:{type:String,required:true,trim:true,maxlength:150},description:{type:String,required:true,maxlength:5000},price:{type:Number,required:true,min:0},propertyType:{type:String,enum:['apartment','house','villa','plot','office'],required:true},bedrooms:{type:Number,min:0},bathrooms:{type:Number,min:0},city:{type:String,required:true,trim:true,index:true},address:{type:String,required:true,trim:true},images:[{url:String,publicId:String}],amenities:[String],postedBy:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true,index:true},location:{type:{type:String,enum:['Point'],default:'Point'},coordinates:{type:[Number],default:[0,0]}}},{timestamps:true});
+propertySchema.index({location:'2dsphere'}); propertySchema.index({city:1,propertyType:1,price:1});
+export default mongoose.model('Property',propertySchema);
